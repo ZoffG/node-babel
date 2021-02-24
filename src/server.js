@@ -94,15 +94,26 @@ server.put('api/marketplaces/:id', async (req, res) => {
     console.log(marketplace);
 
     return res.status(200).json({ success: true, data: marketplace });
-
-    return res.end();
   } catch (e) {
     console.error(e);
 
     if (e.kind == 'ObjectId' && e.path == '_id') {
-      return res.status(400).json({ error: 'Invalid ID parameter' });
+      return res.status(400).json({ error: 'Invalid id parameter' });
     }
 
+    return res.status(500).send(e);
+  }
+});
+
+server.delete('/api/marketplaces/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await Marketplaces.findByIdAndDelete(id);
+
+    return res.json({ success: true });
+  } catch (e) {
+    console.error(e);
     return res.status(500).send(e);
   }
 });
