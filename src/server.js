@@ -64,7 +64,7 @@ server.post('/api/marketplaces', async (req, res) => {
   }
 });
 
-server.put('api/marketplaces/:id', async (req, res) => {
+server.put('/api/marketplaces/:id', async (req, res) => {
   try {
     const { body } = req;
     const { id } = req.params;
