@@ -9,7 +9,7 @@ import errorHandler from './middleware/errorHandler';
 
 connect();
 
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 const server = express();
 
 server.use(express.json());
